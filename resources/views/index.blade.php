@@ -37,8 +37,10 @@
             <a href="{{route('automovel.show', $automovel->id)}}">
               <button class="btn btn-secondary">Visualizar</button>
             </a>
+            <a href="{{route('automovel.edit', $automovel->id)}}">
+              <button class="btn btn-primary">Editar</button>
+            </a>
             
-            <button class="btn btn-primary">Editar</button>
             <button class="btn btn-danger">Deletar</button>
           </td>
       </tr>

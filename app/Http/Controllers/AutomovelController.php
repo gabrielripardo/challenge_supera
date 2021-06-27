@@ -90,7 +90,9 @@ class AutomovelController extends Controller
      */
     public function edit($id)
     {
-        //
+        echo 'ID: '.$id;
+        $automovel = $this->automovel->find($id);
+        return view('create', ['automovel' => $automovel]);
     }
 
     /**
@@ -102,7 +104,17 @@ class AutomovelController extends Controller
      */
     public function update(AutomovelRequest $request, $id)
     {
-        //
+        $edicao = $this->automovel->where(['id' => $id])->update([
+            'id_user'=>1, //Usuário com ID: 1 (fixo)
+            'tipo'=>$request->tipo,
+            'marca'=>$request->marca,
+            'modelo'=>$request->modelo,
+            'versao'=>$request->versao,
+        ]);
+
+        if($edicao){
+            return redirect('/');
+        }
     }
 
     /**
