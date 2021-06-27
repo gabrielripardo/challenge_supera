@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\AutomovelRequest;
 use App\Models\ModelAutomovel;
 use App\Models\User;
 
@@ -44,7 +45,7 @@ class AutomovelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AutomovelRequest $request)
     {
         // $dados = [
         //     'tipo'=>$request->tipo,
@@ -99,7 +100,7 @@ class AutomovelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AutomovelRequest $request, $id)
     {
         //
     }
