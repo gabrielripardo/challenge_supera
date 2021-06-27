@@ -7,11 +7,11 @@
       <ul>
           <li><a href="">Home</a></li>
           <li><a href="">Usuário</a></li>
-          <li><a href="">Login</a></li>git init
+          <li><a href="">Login</a></li>
       </ul>        
   </nav>
   <div class="text-end mt-2 mb-3">
-    <a href="">
+    <a href="{{route('automovel.create')}}">
       <button class="btn btn-success">Cadastrar</button>
     </a>
   </div>
@@ -39,8 +39,11 @@
           <td>{{$automovel->modelo}}</td>
           <td>{{$automovel->versao}}</td>
           <td>{{$user->name}}</td>
-          <td>
-            <button class="btn btn-secondary">Visualizar</button>
+          <td>          
+            <a href="{{route('automovel.show', $automovel->id)}}">
+              <button class="btn btn-secondary">Visualizar</button>
+            </a>
+            
             <button class="btn btn-primary">Editar</button>
             <button class="btn btn-danger">Deletar</button>
           </td>

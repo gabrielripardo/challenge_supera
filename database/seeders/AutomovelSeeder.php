@@ -17,7 +17,7 @@ class AutomovelSeeder extends Seeder
             'id_user' => 1,
             'tipo' => 'Carro',
             'marca' => 'Toyota',
-            'modelo' => 'Toyota',
+            'modelo' => 'Corolla',
             'versao' => '2021'
         ]);        
         ModelAutomovel::create([ 

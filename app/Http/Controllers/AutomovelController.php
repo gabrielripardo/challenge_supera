@@ -6,7 +6,7 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AutomovelController extends Controller
 {
     private $user;
     private $automovel;
@@ -35,7 +35,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -46,7 +46,25 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $dados = [
+        //     'tipo'=>$request->tipo,
+        //     'marca'=>$request->marca,
+        //     'modelo'=>$request->modelo,
+        //     'versao'=>$request->versao,
+        // ];
+
+        // dd($dados);
+        $cadastro = $this->automovel->create([
+            'id_user'=>1, //Usuário com ID: 1 (fixo)
+            'tipo'=>$request->tipo,
+            'marca'=>$request->marca,
+            'modelo'=>$request->modelo,
+            'versao'=>$request->versao,
+        ]);
+
+        if($cadastro){
+            return redirect('/');
+        }
     }
 
     /**
@@ -57,7 +75,10 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+        //echo $id;
+        $automovel = $this->automovel->find($id);
+        $user = $this->automovel->find($id)->relUsers;
+        return view('show', ['automovel' => $automovel, 'user' => $user]);
     }
 
     /**
