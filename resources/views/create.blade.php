@@ -2,14 +2,7 @@
 
 @section('content')
 <div class="container">
-  <h1 class="text-center mb-3">Cadastro de automóveis</h1>
-  <nav>
-      <ul>
-          <li><a href="">Home</a></li>
-          <li><a href="">Usuário</a></li>
-          <li><a href="">Login</a></li>
-      </ul>        
-  </nav>
+  <h1 class="text-center mb-3">Cadastro de automóveis</h1>  
   <div>
     
       @if(isset($errors) && count($errors) > 0)

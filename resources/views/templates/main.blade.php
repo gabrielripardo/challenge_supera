@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="{{ url('assets/bootstrap-5.0.2-dist/css/bootstrap.min.css') }}">
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="{{url('/')}}">Home</a></li>
+            <li><a href="">Usuário</a></li>
+            <li><a href="">Login</a></li>
+        </ul>        
+    </nav>
     @yield('content')    
 </body>
 </html>

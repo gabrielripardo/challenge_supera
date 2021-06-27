@@ -3,13 +3,7 @@
 @section('content')
 <div class="container">
   <h1 class="text-center mb-3">Página Home</h1>
-  <nav>
-      <ul>
-          <li><a href="">Home</a></li>
-          <li><a href="">Usuário</a></li>
-          <li><a href="">Login</a></li>
-      </ul>        
-  </nav>
+  
   <div class="text-end mt-2 mb-3">
     <a href="{{route('automovel.create')}}">
       <button class="btn btn-success">Cadastrar</button>
