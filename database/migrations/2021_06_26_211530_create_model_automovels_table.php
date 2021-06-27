@@ -16,8 +16,10 @@ class CreateModelAutomovelsTable extends Migration
         Schema::create('automoveis', function (Blueprint $table) {
             $table->id();
             $table->biginteger('id_user')->unsigned();
+            $table->biginteger('id_tipo')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('tipo');
+            $table->foreign('id_tipo')->references('id')->on('tipos')->onDelete('cascade')->onUpdate('cascade');
+            //$table->string('tipo');
             $table->string('marca');
             $table->string('modelo');
             $table->string('versao')->nullable();            

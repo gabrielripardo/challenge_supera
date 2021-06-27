@@ -14,4 +14,8 @@ class ModelAutomovel extends Model
     public function relUsers(){
         return $this->hasOne('App\Models\User', 'id', 'id_user');
     }
+
+    public function relTipos(){
+        return $this->hasOne('App\Models\ModelTipo', 'id', 'id_tipo');
+    }
 }
