@@ -1,7 +1,6 @@
 @extends('templates.main')
 
 @section('content')
-<div class="container">
   <h1 class="text-center mb-3">
     @if(isset($automovel)) 
       Edição de automóvel 
@@ -44,7 +43,5 @@
       <input class="form-control" type="text" name="versao" id="versao" placeholder="Versão" value="{{$automovel->versao ?? ''}}">      
       <input class="btn btn-primary" type="submit" value="@if(isset($automovel)) Editar @else Cadastrar @endif">
     </form>
-  </div>
-  
-</div>
+  </div>  
 @endsection

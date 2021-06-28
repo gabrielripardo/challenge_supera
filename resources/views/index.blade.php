@@ -1,15 +1,23 @@
 @extends('templates.main')
 
 @section('content')
-<div class="container">
-  <h1 class="text-center mb-3">Página Home</h1>
-  
+  <h1 class="text-center mb-3">Página Home</h1>  
   <div class="text-end mt-2 mb-3">
     <a href="{{route('automovel.create')}}">
       <button class="btn btn-success">Cadastrar</button>
     </a>
   </div>
-  
+  <div class="filtro">    
+    <form class="row" action="{{ route('automovel.search') }}" method="post">
+      @csrf
+      <div class="col">
+        <input class="form-control" type="text" name="keyword" placeholder="Filtro:">
+      </div>
+      <div class="col-2 text-right">
+        <input class="btn btn-primary" type="submit" value="Filtrar">
+      </div>                  
+    </form>  
+  </div>
   <table class="table m-auto">
     <thead>
       <tr>
@@ -48,5 +56,9 @@
       @endforeach       
     </tbody>
   </table>
-</div>
+  @if (isset($filters))
+    {{ $automoveis->appends($filters)->links()}}
+  @else
+    {{$automoveis->links()}}
+  @endif
 @endsection

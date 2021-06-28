@@ -19,13 +19,14 @@ Route::get('/', 'AutomovelController@index');
 //     return view('index');
 // });
 
-Route::get('automoveis/create', 'AutomovelController@create')->name('automovel.create'); //Formulário para cadastrar o produto
-Route::post('automoveis', 'AutomovelController@store')->name('automovel.store'); //Armazenar o produto
-// Route::delete('produtos/{id}', 'ProductController@destroy')->name('products.destroy'); //Deleta produto
-Route::put('automoveis/{id}/update', 'AutomovelController@update')->name('automovel.update'); //Altera o produto
-Route::get('automoveis/{id}/edit', 'AutomovelController@edit')->name('automovel.edit'); //Formulário para editar produto
-Route::get('automoveis/{id}', 'AutomovelController@show')->name('automovel.show'); //Detalhes do produto
-// Route::get('produtos', 'ProductController@index')->name('products.index'); //Lista os produtos
+Route::get('automoveis/create', 'AutomovelController@create')->name('automovel.create'); //Formulário para cadastrar o automovel
+Route::post('automoveis', 'AutomovelController@store')->name('automovel.store'); //Armazenar o automovel
+// Route::delete('automovels/{id}', 'ProductController@destroy')->name('products.destroy'); //Deleta automovel
+Route::put('automoveis/{id}/update', 'AutomovelController@update')->name('automovel.update'); //Altera o automovel
+Route::get('automoveis/{id}/edit', 'AutomovelController@edit')->name('automovel.edit'); //Formulário para editar automovel
+Route::get('automoveis/show/{id}', 'AutomovelController@show')->name('automovel.show'); //Detalhes do automovel
+// Route::get('automovels', 'ProductController@index')->name('products.index'); //Listar os automoveis
+Route::any('automoveis/search', 'AutomovelController@search')->name('automovel.search');
 
 ### Acesso restrito ###
 // Route::middleware([])->group(function(){ //Tudo que tiver middleware só será executado se o usuário tiver logado. //caso houver auth no array ele vai restringir o acesso.

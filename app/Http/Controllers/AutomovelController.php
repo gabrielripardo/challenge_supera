@@ -25,10 +25,11 @@ class AutomovelController extends Controller
      */
     public function index()
     {
-        $automoveis = $this->automovel->all();        
+        $automoveis = $this->automovel->paginate(1);       
+        //order by id 
+
         // dd($this->automovel->find(2)->relUsers);
         return view('index', ['automoveis' => $automoveis]);
-
     }
 
     /**
@@ -132,5 +133,37 @@ class AutomovelController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $filters = $request->except('_token');
+
+        $tipos = $this->tipo->find('Carro');
+        // $tipo = $automovel->find($automovel->id)->relTipos
+
+
+        // $tipos = $this->tipo->join('tipos')
+        //     ->leftJoin('automoveis', 'tipos.id', '=', 'automoveis.id_tipo')
+        //     ->get();
+        
+        // dd($tipos);
+
+        //dd("pesquisando por {$request->search}");
+        $automoveis = $this->automovel->where('marca', 'LIKE', "%{$request->keyword}%")
+                        ->orWhere('modelo', 'LIKE', "%{$request->keyword}%")
+                        ->orWhere('versao', 'LIKE', "%{$request->keyword}%")
+                        ->orWhere('id_tipo', 'LIKE', "%{$request->keyword}%")
+                        ->orWhere(function ($query) {
+                            $query->select('nome')
+                                  ->from('tipos')
+                                  ->whereColumn('automoveis.id_tipo', 'id');
+                        },'LIKE', "%{$request->keyword}%")
+                        //order by id
+                        
+                        ->paginate(1);
+
+        //dd($automoveis);
+        return view('index', ['automoveis' => $automoveis, 'filters' => $filters]);        
     }
 }
