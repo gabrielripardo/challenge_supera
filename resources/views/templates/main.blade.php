@@ -15,6 +15,8 @@
             <li><a href="{{route('login.page')}}">Login</a></li>
         </ul>        
     </nav>
-    @yield('content')    
+    @yield('content')   
+    
+    <script src="{{url("assets/js/deleteAction.js")}}"></script>
 </body>
 </html>

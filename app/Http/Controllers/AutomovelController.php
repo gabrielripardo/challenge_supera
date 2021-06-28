@@ -131,6 +131,8 @@ class AutomovelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd($id);
+        $delete = $this->automovel->destroy($id);
+        return($delete)?"sim":"não";
     }
 }

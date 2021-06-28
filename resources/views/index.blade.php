@@ -11,6 +11,7 @@
   </div>
   
   <table class="table m-auto">
+    @csrf
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -40,9 +41,10 @@
             </a>
             <a href="{{route('automovel.edit', $automovel->id)}}">
               <button class="btn btn-primary">Editar</button>
-            </a>
-            
-            <button class="btn btn-danger">Deletar</button>
+            </a>            
+            <a href="{{route('automovel.destroy', $automovel->id)}}" class="js-del">
+              <button class="btn btn-danger">Deletar</button>
+            </a>            
           </td>
       </tr>
       @endforeach       
