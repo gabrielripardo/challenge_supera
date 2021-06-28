@@ -12,7 +12,7 @@
         <ul>
             <li><a href="{{url('/')}}">Home</a></li>
             <li><a href="">Usuário</a></li>
-            <li><a href="">Login</a></li>
+            <li><a href="{{route('login.page')}}">Login</a></li>
         </ul>        
     </nav>
     @yield('content')    
