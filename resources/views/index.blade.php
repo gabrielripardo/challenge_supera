@@ -24,15 +24,16 @@
     <tbody>
       @foreach ($automoveis as $automovel)      
         @php
-          $user = $automovel->find($automovel->id)->relUsers;        
+          $user = $automovel->find($automovel->id)->relUsers;     
+          $tipo = $automovel->find($automovel->id)->relTipos
         @endphp 
         <tr>    
           <th>{{$automovel->id}}</th>
-          <td>{{$automovel->tipo}}</td>
+          <td>{{$tipo->nome}}</td>
           <td>{{$automovel->marca}}</td>
           <td>{{$automovel->modelo}}</td>
           <td>{{$automovel->versao}}</td>
-          <td>{{$user->name}}</td>
+          <td>{{$user->name}}</td>          
           <td>          
             <a href="{{route('automovel.show', $automovel->id)}}">
               <button class="btn btn-secondary">Visualizar</button>

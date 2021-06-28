@@ -28,9 +28,9 @@
       @csrf
       <select class="form-control" name="tipo" id="tipo" required>
         <option value="">Tipo</option>
-        <option value="Carro">Carro</option>
-        <option value="Moto">Moto</option>
-        <option value="Caminhão">Caminhão</option>
+        @foreach ($tipos as $item)
+          <option value="{{$item->id}}">{{$item->nome}}</option>        
+        @endforeach                
       </select>
       <input class="form-control" type="text" name="marca" id="marca" placeholder="Marca" value="{{$automovel->marca ?? ''}}" required>
       <input class="form-control" type="text" name="modelo" id="modelo" placeholder="Modelo" value="{{$automovel->modelo ?? ''}}" required>       

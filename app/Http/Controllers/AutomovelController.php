@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\AutomovelRequest;
 use App\Models\ModelAutomovel;
+use App\Models\ModelTipo;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ class AutomovelController extends Controller
     public function __construct(){
         $this->user = new User();
         $this->automovel = new ModelAutomovel();
+        $this->tipo = new ModelTipo();
     }
     /**
      * Display a listing of the resource.
@@ -23,7 +25,7 @@ class AutomovelController extends Controller
      */
     public function index()
     {
-        $automoveis = $this->automovel->all();
+        $automoveis = $this->automovel->all();        
         // dd($this->automovel->find(2)->relUsers);
         return view('index', ['automoveis' => $automoveis]);
 
@@ -36,7 +38,8 @@ class AutomovelController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $tipos = $this->tipo->all();
+        return view('create', ['tipos' => $tipos]);
     }
 
     /**
@@ -92,7 +95,8 @@ class AutomovelController extends Controller
     {
         echo 'ID: '.$id;
         $automovel = $this->automovel->find($id);
-        return view('create', ['automovel' => $automovel]);
+        $tipos = $this->tipo->all();        
+        return view('create', ['automovel' => $automovel, 'tipos' => $tipos]);
     }
 
     /**
