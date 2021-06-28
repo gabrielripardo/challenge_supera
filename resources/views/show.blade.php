@@ -5,7 +5,7 @@
   <h1 class="text-center mb-3">Visualização</h1>
 
   <div>
-    Tipo: {{$automovel->tipo}} <br>
+    Tipo: {{$tipo->nome}} <br>
     Marca: {{$automovel->marca}} <br>
     Modelo: {{$automovel->modelo}} <br>
     Versão: {{$automovel->versao}} <br>

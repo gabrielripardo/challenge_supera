@@ -9,7 +9,7 @@ class ModelAutomovel extends Model
 {
     use HasFactory;
     protected $table='automoveis';
-    protected $fillable = ['id_user', 'tipo', 'marca', 'modelo', 'versao'];
+    protected $fillable = ['id_user', 'id_tipo', 'marca', 'modelo', 'versao'];
 
     public function relUsers(){
         return $this->hasOne('App\Models\User', 'id', 'id_user');

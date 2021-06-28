@@ -58,9 +58,10 @@ class AutomovelController extends Controller
         // ];
 
         // dd($dados);
+        
         $cadastro = $this->automovel->create([
             'id_user'=>1, //Usuário com ID: 1 (fixo)
-            'tipo'=>$request->tipo,
+            'id_tipo'=>$request->tipo,
             'marca'=>$request->marca,
             'modelo'=>$request->modelo,
             'versao'=>$request->versao,
@@ -82,7 +83,8 @@ class AutomovelController extends Controller
         //echo $id;
         $automovel = $this->automovel->find($id);
         $user = $this->automovel->find($id)->relUsers;
-        return view('show', ['automovel' => $automovel, 'user' => $user]);
+        $tipo = $this->automovel->find($id)->relTipos;
+        return view('show', ['automovel' => $automovel, 'user' => $user, 'tipo' => $tipo]);
     }
 
     /**
@@ -110,7 +112,7 @@ class AutomovelController extends Controller
     {
         $edicao = $this->automovel->where(['id' => $id])->update([
             'id_user'=>1, //Usuário com ID: 1 (fixo)
-            'tipo'=>$request->tipo,
+            'id_tipo'=>$request->tipo,
             'marca'=>$request->marca,
             'modelo'=>$request->modelo,
             'versao'=>$request->versao,

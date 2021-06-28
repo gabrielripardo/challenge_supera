@@ -29,7 +29,14 @@
       <select class="form-control" name="tipo" id="tipo" required>
         <option value="">Tipo</option>
         @foreach ($tipos as $item)
-          <option value="{{$item->id}}">{{$item->nome}}</option>        
+          <option value="{{$item->id}}" 
+            @if (isset($automovel))
+              @if($item->id == $automovel->id_tipo) 
+                selected 
+              @endif
+            @endif>            
+            {{$item->nome}} 
+          </option>        
         @endforeach                
       </select>
       <input class="form-control" type="text" name="marca" id="marca" placeholder="Marca" value="{{$automovel->marca ?? ''}}" required>
