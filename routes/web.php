@@ -31,6 +31,7 @@ Route::get('/logout', 'UserController@logout')->name('logout');
 Route::post('/login/auth', 'UserController@auth')->name('auth.user');
 
 Route::get('users', 'UserController@index')->name('users.index');
+Route::delete('users/{id}', 'UserController@destroy')->name('user.destroy')->middleware('auth'); //Deleta automovel
 Route::get('users/create', 'UserController@create')->name('user.create')->middleware('auth'); //Formulário para cadastrar o automovel
 Route::get('users/show/{id}', 'UserController@show')->name('user.show'); //Detalhes do automovel
 Route::get('users/{id}/edit', 'UserController@edit')->name('user.edit')->middleware('auth'); //Formulário para editar automovel

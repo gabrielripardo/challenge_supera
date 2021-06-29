@@ -1,4 +1,5 @@
 @extends('templates.main')
+@extends('templates.model')
 
 @section('content')
   <h1 class="text-center mb-3">Usuários</h1>  
@@ -18,6 +19,15 @@
       </div>                  
     </form>  
   </div> --}}
+  @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+  @elseif ($message = Session::get('danger'))
+    <div class="alert alert-danger">
+      <p>{{ $message }}</p>
+    </div>
+  @endif
   <table class="table m-auto">
     <thead>
       <tr>
@@ -44,7 +54,7 @@
               <button class="btn btn-primary">Editar</button>
             </a>
             
-            <button class="btn btn-danger">Deletar</button>
+            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDelUserConfirm">Deletar</button>                                  
           </td>
       </tr>
       @endforeach       

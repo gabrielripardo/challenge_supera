@@ -118,7 +118,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = $this->user->destroy($id);
+        
+        if($delete){
+            return redirect(url()->previous())
+                ->with('success','Usuário deletado com sucesso.');            
+        }
+        return redirect(url()->previous())
+            ->with('danger','Ocorreu um erro ao deletar o usuário.');
     }
 
     public function login(){        
