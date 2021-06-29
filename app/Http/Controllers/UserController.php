@@ -3,24 +3,16 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
-    public function login(){
-        return view('login');
+    private $user;
+
+    public function __construct(){
+        $this->user = new User();        
     }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect(route('login.page'));
-    }
-
+    
     public function auth(Request $request){
         $this->validate($request, [
             'email' => 'required',
@@ -40,7 +32,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = $this->user->paginate(1);
+        return view('users/index', compact('users'));
     }
 
     /**
@@ -107,5 +100,20 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function login(){        
+        return view('login');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect(route('login.page'));
     }
 }

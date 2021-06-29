@@ -19,7 +19,6 @@ Route::get('automoveis/show/{id}', 'AutomovelController@show')->name('automovel.
 Route::any('automoveis/search', 'AutomovelController@search')->name('automovel.search');
 
 Route::get('automoveis/create', 'AutomovelController@create')->name('automovel.create')->middleware('auth'); //Formulário para cadastrar o automovel
-Route::get('automoveis/create', 'AutomovelController@create')->name('automovel.create')->middleware('auth'); //Formulário para cadastrar o automovel
 // Route::delete('automovels/{id}', 'ProductController@destroy')->name('products.destroy')->middleware('auth'); //Deleta automovel
 Route::put('automoveis/{id}/update', 'AutomovelController@update')->name('automovel.update')->middleware('auth'); //Altera o automovel
 Route::get('automoveis/{id}/edit', 'AutomovelController@edit')->name('automovel.edit')->middleware('auth'); //Formulário para editar automovel
@@ -29,7 +28,9 @@ Route::get('/login', 'UserController@login')->name('login.page');
 Route::get('/logout', 'UserController@logout')->name('logout');
 Route::post('/login/auth', 'UserController@auth')->name('auth.user');
 
-
+Route::get('users', 'UserController@index')->name('users.index');
+Route::get('users/show/{id}', 'UserController@show')->name('user.show'); //Detalhes do automovel
+Route::get('users/{id}/edit', 'UserController@edit')->name('user.edit')->middleware('auth'); //Formulário para editar automovel
 // Route::get('/', function () {
 //     return view('index');
 // });
