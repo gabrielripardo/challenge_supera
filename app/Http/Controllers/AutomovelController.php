@@ -129,8 +129,16 @@ class AutomovelController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {        
+        $delete = $this->automovel->destroy($id);
+        
+        if($delete){
+            return redirect(url()->previous())
+                ->with('success','Dica deletada com sucesso.');            
+        }
+        return redirect(url()->previous())
+            ->with('danger','Ocorreu um erro ao deletar a dica.');
+        
     }
 
     public function search(Request $request)

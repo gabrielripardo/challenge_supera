@@ -1,4 +1,5 @@
 @extends('templates.main')
+@extends('templates.model')
 
 @section('content')
   @if (isset($id))
@@ -11,11 +12,20 @@
   @if (Auth::check(0))  
     <div class="text-end mt-2 mb-3">
       <a href="{{route('automovel.create')}}">
-        <button class="btn btn-success">Cadastrar</button>
+        <button class="btn btn-success">Add Dica</button>
       </a>
     </div>      
-  @endif  
+  @endif    
 
+  @if ($message = Session::get('success'))
+      <div class="alert alert-success">
+          <p>{{ $message }}</p>
+      </div>
+  @elseif ($message = Session::get('danger'))
+      <div class="alert alert-danger">
+        <p>{{ $message }}</p>
+      </div>
+  @endif
   <div class="filtro">    
     <form class="row" action="{{ route('automovel.search') }}" method="post">
       @csrf
@@ -60,8 +70,8 @@
               @if ($id == Auth::user()->id)
                 <a href="{{route('automovel.edit', $automovel->id)}}">
                   <button class="btn btn-primary">Editar</button>
-                </a>              
-                <button class="btn btn-danger">Deletar</button>
+                </a>                  
+                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteConfirm">Deletar</button>                                  
               @endif
             @endif
           </td>
