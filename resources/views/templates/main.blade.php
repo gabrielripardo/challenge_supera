@@ -11,12 +11,17 @@
     <div class="container">
         <nav>
             <ul>
-                <li><a href="{{url('/')}}">Home</a></li>
+                <li><a href="{{route('automovel.index')}}">Home</a></li>
                 <li><a href="">Usuário</a></li>
-                <li><a href="{{route('login.page')}}">Login</a></li>
+                @if (Auth::check())
+                    <li><a href="{{route('logout')}}">Logout on {{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}} </a></li>    
+                @else
+                    <li><a href="{{route('login.page')}}">Login</a></li>
+                @endif                                
             </ul>        
         </nav>
         @yield('content')    
+       
     </div>    
 </body>
 </html>

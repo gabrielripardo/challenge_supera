@@ -9,6 +9,18 @@ class UserController extends Controller
     public function login(){
         return view('login');
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect(route('automovel.index'));
+    }
+
     public function auth(Request $request){
         $this->validate($request, [
             'email' => 'required',
@@ -16,7 +28,7 @@ class UserController extends Controller
         ]);
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            dd('Logou');
+            return redirect(route('automovel.index'));
         }else{
             return redirect()->back()->with('danger', 'E-mail ou senha inválidos.');
         }
