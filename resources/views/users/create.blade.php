@@ -26,7 +26,7 @@
       @csrf      
       <input class="form-control" type="text" name="name" id="name" placeholder="Nome" value="{{$user->name ?? ''}}" required>
       <input class="form-control" type="text" name="email" id="email" placeholder="E-mail" value="{{$user->email ?? ''}}" required>       
-      <input type="password" name="password" id="password" placeholder="Senha">
+      <input type="password" name="password" id="password" placeholder="Senha" required>
       <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirme a senha">
       <input class="btn btn-primary" type="submit" value="@if(isset($user)) Editar @else Cadastrar @endif">
     </form>

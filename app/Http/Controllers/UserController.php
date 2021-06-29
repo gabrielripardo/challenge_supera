@@ -56,7 +56,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $cadastro = $this->user->create([
-            'id'=>$request->id, //Usuário com ID: 1 (fixo)
+            'id'=>$request->id, 
             'name'=>$request->name,
             'email'=>$request->email,     
             'password'=>Hash::make($request->password),
@@ -86,7 +86,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->user->find($id);
+        return view('users/create', compact('user'));
     }
 
     /**
@@ -98,7 +99,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $edicao = $this->user->where(['id' => $id])->update([            
+            'name'=>$request->name,
+            'email'=>$request->email,     
+            'password'=>Hash::make($request->password), 
+        ]);
+
+        if($edicao){
+            return redirect(route('users.index'));
+        }
     }
 
     /**
