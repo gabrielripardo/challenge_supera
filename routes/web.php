@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'AutomovelController@index')->name('automovel.index');
+Route::get('automoveis/id={id}', 'AutomovelController@mydicas')->name('automovel.mydicas')->middleware('auth');
+
 
 Route::get('automoveis/show/{id}', 'AutomovelController@show')->name('automovel.show'); //Detalhes do automovel
 // Route::get('automovels', 'ProductController@index')->name('products.index'); //Listar os automoveis

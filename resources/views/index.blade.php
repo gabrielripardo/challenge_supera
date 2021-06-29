@@ -1,12 +1,21 @@
 @extends('templates.main')
 
 @section('content')
-  <h1 class="text-center mb-3">Página Home</h1>  
-  <div class="text-end mt-2 mb-3">
-    <a href="{{route('automovel.create')}}">
-      <button class="btn btn-success">Cadastrar</button>
-    </a>
-  </div>
+  @if (isset($id))
+    @if ($id == Auth::user()->id)
+      <h1 class="text-center mb-3">Minhas dicas</h1>                  
+    @endif    
+  @else
+    <h1 class="text-center mb-3">Página Home</h1>  
+  @endif
+  @if (Auth::check())  
+    <div class="text-end mt-2 mb-3">
+      <a href="{{route('automovel.create')}}">
+        <button class="btn btn-success">Cadastrar</button>
+      </a>
+    </div>      
+  @endif  
+
   <div class="filtro">    
     <form class="row" action="{{ route('automovel.search') }}" method="post">
       @csrf
@@ -46,11 +55,15 @@
             <a href="{{route('automovel.show', $automovel->id)}}">
               <button class="btn btn-secondary">Visualizar</button>
             </a>
-            <a href="{{route('automovel.edit', $automovel->id)}}">
-              <button class="btn btn-primary">Editar</button>
-            </a>
-            
-            <button class="btn btn-danger">Deletar</button>
+
+            @if (isset($id))  
+              @if ($id == Auth::user()->id)
+                <a href="{{route('automovel.edit', $automovel->id)}}">
+                  <button class="btn btn-primary">Editar</button>
+                </a>              
+                <button class="btn btn-danger">Deletar</button>
+              @endif
+            @endif
           </td>
       </tr>
       @endforeach       

@@ -56,7 +56,7 @@ class AutomovelController extends Controller
         //     'modelo'=>$request->modelo,
         //     'versao'=>$request->versao,
         // ];
-        
+
         $cadastro = $this->automovel->create([
             'id_user'=>$request->id_automovel, //Usuário com ID: 1 (fixo)
             'id_tipo'=>$request->tipo,
@@ -163,5 +163,13 @@ class AutomovelController extends Controller
 
         //dd($automoveis);
         return view('index', ['automoveis' => $automoveis, 'filters' => $filters]);        
+    }
+    public function mydicas($id){
+        $automoveis = $this->automovel->where('id_user', '=', $id)                    
+                    ->paginate(1);                
+        //order by id 
+
+        // dd($this->automovel->find(2)->relUsers);
+        return view('index', ['automoveis' => $automoveis, 'id' => $id]);
     }
 }
