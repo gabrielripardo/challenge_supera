@@ -3,9 +3,9 @@
 @section('content')
   <h1 class="text-center mb-3">Usuários</h1>  
   <div class="text-end mt-2 mb-3">
-    {{-- <a href="{{route('user.create')}}">
+    <a href="{{route('user.create')}}">
       <button class="btn btn-success">Cadastrar</button>
-    </a> --}}
+    </a>
   </div>
   {{-- <div class="filtro">    
     <form class="row" action="{{ route('user.search') }}" method="post">

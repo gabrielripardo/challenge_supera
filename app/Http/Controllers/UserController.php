@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -43,7 +44,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users/create');
     }
 
     /**
@@ -54,7 +55,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cadastro = $this->user->create([
+            'id'=>$request->id, //Usuário com ID: 1 (fixo)
+            'name'=>$request->name,
+            'email'=>$request->email,     
+            'password'=>Hash::make($request->password),
+        ]);
+
+        if($cadastro){
+            return redirect(route('users.index'));
+        }
     }
 
     /**
