@@ -27,8 +27,22 @@
       <input class="form-control" type="text" name="name" id="name" placeholder="Nome" value="{{$user->name ?? ''}}" required>
       <input class="form-control" type="text" name="email" id="email" placeholder="E-mail" value="{{$user->email ?? ''}}" required>       
       <input type="password" name="password" id="password" placeholder="Senha" required>
-      <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirme a senha">
-      <input class="btn btn-primary" type="submit" value="@if(isset($user)) Editar @else Cadastrar @endif">
+      <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirme a senha" required>
+      <input class="btn btn-primary" id="btnSubmit" type="button" value="@if(isset($user)) Editar @else Cadastrar @endif">
     </form>
   </div>  
+  <script>
+    $(function () {
+      $("#btnSubmit").click(function (e) {
+          var password = $("#password").val();
+          var confirmPassword = $("#confirm_password").val();
+          console.log(password+" | "+confirmPassword )
+          if (password != confirmPassword) {
+            alert("As senhas devem ser iguais.");                            
+          }else{
+            e.target.parentNode.submit()
+          }          
+      });
+    });
+  </script>
 @endsection
