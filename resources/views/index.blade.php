@@ -9,7 +9,7 @@
   @else
     <h1 class="text-center mb-3">Página Home</h1>  
   @endif
-  @if (Auth::check(0))  
+  @if (Auth::check())  
     <div class="text-end mt-2 mb-3">
       <a href="{{route('automovel.create')}}">
         <button class="btn btn-success">Add Dica</button>

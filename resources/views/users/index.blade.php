@@ -3,11 +3,14 @@
 
 @section('content')
   <h1 class="text-center mb-3">Usuários</h1>  
-  <div class="text-end mt-2 mb-3">
-    <a href="{{route('user.create')}}">
-      <button class="btn btn-success">Cadastrar</button>
-    </a>
-  </div>
+  @if (Auth::check())
+    <div class="text-end mt-2 mb-3">
+      <a href="{{route('user.create')}}">
+        <button class="btn btn-success">Add Usuário</button>
+      </a>
+    </div>  
+  @endif
+  
   {{-- <div class="filtro">    
     <form class="row" action="{{ route('user.search') }}" method="post">
       @csrf
@@ -50,11 +53,12 @@
             <a href="{{route('user.show', $user->id)}}">
               <button class="btn btn-secondary">Visualizar</button>
             </a>
-            <a href="{{route('user.edit', $user->id)}}">
-              <button class="btn btn-primary">Editar</button>
-            </a>
-            
-            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDelUserConfirm">Deletar</button>                                  
+            @if (Auth::check())
+              <a href="{{route('user.edit', $user->id)}}">
+                <button class="btn btn-primary">Editar</button>
+              </a>              
+              <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDelUserConfirm">Deletar</button>                                  
+            @endif            
           </td>
       </tr>
       @endforeach       
