@@ -18,7 +18,7 @@ class UserController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect(route('automovel.index'));
+        return redirect(route('login.page'));
     }
 
     public function auth(Request $request){

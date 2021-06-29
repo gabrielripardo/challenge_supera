@@ -26,8 +26,8 @@
         @endif        
         <form action="{{route('auth.user')}}" method="post">
             @csrf   
-            <input class="form-control mb-3" type="text" name="email" id="email" placeholder="E-mail" >
-            <input class="form-control mb-3" type="password" name="password" id="password" placeholder="Senha">
+            <input class="form-control mb-3" type="text" name="email" id="email" placeholder="E-mail" value="gts.senna@gmail.com">
+            <input class="form-control mb-3" type="password" name="password" id="password" placeholder="Senha" value="password">
             <input class="btn btn-primary" type="submit" value="Login">
         </form>
     </div>

@@ -5,7 +5,6 @@ use App\Http\Requests\AutomovelRequest;
 use App\Models\ModelAutomovel;
 use App\Models\ModelTipo;
 use App\Models\User;
-
 use Illuminate\Http\Request;
 
 class AutomovelController extends Controller
@@ -57,11 +56,9 @@ class AutomovelController extends Controller
         //     'modelo'=>$request->modelo,
         //     'versao'=>$request->versao,
         // ];
-
-        // dd($dados);
         
         $cadastro = $this->automovel->create([
-            'id_user'=>1, //Usuário com ID: 1 (fixo)
+            'id_user'=>$request->id_automovel, //Usuário com ID: 1 (fixo)
             'id_tipo'=>$request->tipo,
             'marca'=>$request->marca,
             'modelo'=>$request->modelo,
@@ -111,8 +108,9 @@ class AutomovelController extends Controller
      */
     public function update(AutomovelRequest $request, $id)
     {
+        
         $edicao = $this->automovel->where(['id' => $id])->update([
-            'id_user'=>1, //Usuário com ID: 1 (fixo)
+            'id_user'=>$id,
             'id_tipo'=>$request->tipo,
             'marca'=>$request->marca,
             'modelo'=>$request->modelo,

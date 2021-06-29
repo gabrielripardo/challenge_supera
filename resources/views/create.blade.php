@@ -22,6 +22,7 @@
         @method('PUT')
     @else
       <form name="formCadastro" id="formCadastro" method="POST" action="{{route('automovel.store')}}">      
+        <input type="hidden" name="id_automovel" value="{{Auth::user()->id}}">
     @endif
     
       @csrf
