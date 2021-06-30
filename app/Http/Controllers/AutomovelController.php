@@ -92,8 +92,7 @@ class AutomovelController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        echo 'ID: '.$id;
+    {        
         $automovel = $this->automovel->find($id);
         $tipos = $this->tipo->all();        
         return view('create', ['automovel' => $automovel, 'tipos' => $tipos]);
@@ -109,8 +108,7 @@ class AutomovelController extends Controller
     public function update(AutomovelRequest $request, $id)
     {
         
-        $edicao = $this->automovel->where(['id' => $id])->update([
-            'id_user'=>$id,
+        $edicao = $this->automovel->where(['id' => $id])->update([            
             'id_tipo'=>$request->tipo,
             'marca'=>$request->marca,
             'modelo'=>$request->modelo,

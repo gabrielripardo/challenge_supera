@@ -27,6 +27,7 @@ cd laradock
 docker-compose up -d nginx mysql phpmyadmin 
 
 <h3>Artisan</h3>
+docker-compose exec --user=laradock workspace bash
 php artisan migrate
 php artisan db:seed --class=DatabaseSeeder
 
@@ -34,9 +35,9 @@ php artisan db:seed --class=DatabaseSeeder
 http://localhost:9090
 
 
+<h3>References<h3>
+https://github.com/laradock/laradock
 
-    
-     
     
 
     
