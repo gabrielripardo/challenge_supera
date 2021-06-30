@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->user->paginate(5);
+        $users = $this->user->orderBy('id', 'desc')->paginate(5);
         return view('users/index', compact('users'));
     }
 

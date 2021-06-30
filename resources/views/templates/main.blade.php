@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Dicas para Automóveis</title>
     <link rel="stylesheet" href="{{ url('assets/bootstrap-5.0.2-dist/css/bootstrap.min.css') }}">
-    <script src="{{ url('assets/bootstrap-5.0.2-dist/js/bootstrap.min.js')}}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -14,12 +14,11 @@
 <body>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light p-2">
-            <a class="navbar-brand" href="{{url("/")}}">Automóveis Dicas</a>
+            <a class="navbar-brand" href="{{url("/")}}">Automóveis - Dicas</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            {{-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> --}}
-            <div class="navbar-collapse" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">            
               <ul class="col navbar-nav">
                 <li class="nav-item">
                   <a class="nav-link {{{ isset($automoveis) && !isset($id) ? "active":""}}}" href="{{route('automovel.index')}}">Home </a>

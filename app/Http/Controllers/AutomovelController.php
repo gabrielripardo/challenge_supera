@@ -24,7 +24,7 @@ class AutomovelController extends Controller
      */
     public function index()
     {
-        $automoveis = $this->automovel->paginate(5);       
+        $automoveis = $this->automovel->orderBy('id', 'desc')->paginate(5);       
         //order by id 
 
         // dd($this->automovel->find(2)->relUsers);
@@ -172,7 +172,8 @@ class AutomovelController extends Controller
         return view('index', $vars);        
     }
     public function mydicas($id){
-        $automoveis = $this->automovel->where('id_user', '=', $id)                    
+        $automoveis = $this->automovel->where('id_user', '=', $id)   
+                    ->orderBy('id', 'desc')                 
                     ->paginate(5);                
         //order by id 
 

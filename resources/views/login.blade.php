@@ -9,27 +9,45 @@
 </head>
 <body>    
     <div class="container">
-        <h1>Login</h1>
-        @if (session('danger'))
-            <div class="alert alert-danger">
-                {{ session('danger') }}
+        <h1>
+            <a class="navbar-brand" href="{{url("/")}}">Automóveis - Dicas</a>
+        </h1>
+        <div class="border border-gray m-7" >
+            <div class="m-4" >
+                <h1>Login</h1>                            
             </div>
-        @endif
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif        
-        <form action="{{route('auth.user')}}" method="post">
-            @csrf   
-            <input class="form-control mb-3" type="text" name="email" id="email" placeholder="E-mail" value="gts.senna@gmail.com">
-            <input class="form-control mb-3" type="password" name="password" id="password" placeholder="Senha" value="password">
-            <input class="btn btn-primary" type="submit" value="Login">
-        </form>
+            
+            @if (session('danger'))
+                <div class="alert alert-danger">
+                    {{ session('danger') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif        
+            <form action="{{route('auth.user')}}" method="post">
+                @csrf   
+                <div class="form-group my-2 mx-4">
+                    <input class="form-control mb-3" type="text" name="email" id="email" placeholder="E-mail" value="gts.senna@gmail.com">
+                </div>
+                <div class="form-group my-2 mx-4">
+                    <input class="form-control mb-3" type="password" name="password" id="password" placeholder="Senha" value="password">
+                </div>
+                <div class="form-group my-2 mx-4">
+                    <input class="btn btn-primary" type="submit" value="Login">
+                </div>
+                
+                
+                
+            </form>
+        </div>
+        
     </div>
     
 </body>
