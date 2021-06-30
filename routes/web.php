@@ -18,7 +18,7 @@ Route::get('automoveis/id={id}', 'AutomovelController@mydicas')->name('automovel
 
 Route::get('automoveis/show/{id}', 'AutomovelController@show')->name('automovel.show'); //Detalhes do automovel
 // Route::get('automovels', 'ProductController@index')->name('products.index'); //Listar os automoveis
-Route::any('automoveis/search', 'AutomovelController@search')->name('automovel.search');
+Route::any('automoveis/search/', 'AutomovelController@search')->name('automovel.search');
 
 Route::get('automoveis/create', 'AutomovelController@create')->name('automovel.create')->middleware('auth'); //Formulário para cadastrar o automovel
 Route::delete('automoveis/{id}', 'AutomovelController@destroy')->name('automovel.destroy')->middleware('auth'); //Deleta automovel

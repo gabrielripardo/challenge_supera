@@ -2,21 +2,25 @@
 @extends('templates.model')
 
 @section('content')
-  @if (isset($id))
-    @if ($id == Auth::user()->id)
-      <h1 class="text-center mb-3">Minhas dicas</h1>                  
-    @endif    
-  @else
-    <h1 class="text-center mb-3">Página Home</h1>  
-  @endif
-  @if (Auth::check())  
-    <div class="text-end mt-2 mb-3">
-      <a href="{{route('automovel.create')}}">
-        <button class="btn btn-success">Add Dica</button>
-      </a>
-    </div>      
+  <div class="row">
+    <div class="col-auto p-3">
+      @if (isset($id))
+        @if ($id == Auth::user()->id)
+          <h1 class="text-center mb-3">Minhas dicas</h1>                  
+        @endif    
+      @else
+        <h1 class="text-center mb-3">Página Home</h1>  
+      @endif    
+    </div>    
+    @if (Auth::check())  
+      <div class="col text-end py-3">
+        <a href="{{route('automovel.create')}}">
+          <button class="btn btn-success">Add Dica</button>
+        </a>
+      </div>      
   @endif    
-
+  </div>
+    
   @if ($message = Session::get('success'))
       <div class="alert alert-success">
           <p>{{ $message }}</p>
@@ -29,10 +33,13 @@
   <div class="filtro">    
     <form class="row" action="{{ route('automovel.search') }}" method="post">
       @csrf
-      <div class="col">
+      @if (isset($id))        
+        <input type="hidden" name="id_user" value="{{Auth::user()->id}}">        
+      @endif
+      <div class="col-4">
         <input class="form-control" type="text" name="keyword" placeholder="Filtro:">
       </div>
-      <div class="col-2 text-right">
+      <div class="col">
         <input class="btn btn-primary" type="submit" value="Filtrar">
       </div>                  
     </form>  
@@ -79,9 +86,11 @@
       @endforeach       
     </tbody>
   </table>
-  @if (isset($filters))
-    {{ $automoveis->appends($filters)->links()}}
-  @else
-    {{$automoveis->links()}}
-  @endif
+  <div class="pagination justify-content-center m-4">    
+    @if (isset($filters))
+      {{ $automoveis->appends($filters)->links()}}
+    @else
+      {{$automoveis->links()}}
+    @endif
+  </div>
 @endsection

@@ -2,26 +2,19 @@
 @extends('templates.model')
 
 @section('content')
-  <h1 class="text-center mb-3">Usuários</h1>  
-  @if (Auth::check())
-    <div class="text-end mt-2 mb-3">
-      <a href="{{route('user.create')}}">
-        <button class="btn btn-success">Add Usuário</button>
-      </a>
-    </div>  
-  @endif
-  
-  {{-- <div class="filtro">    
-    <form class="row" action="{{ route('user.search') }}" method="post">
-      @csrf
-      <div class="col">
-        <input class="form-control" type="text" name="keyword" placeholder="Filtro:">
-      </div>
-      <div class="col-2 text-right">
-        <input class="btn btn-primary" type="submit" value="Filtrar">
-      </div>                  
-    </form>  
-  </div> --}}
+  <div class="row">
+    <div class="col-auto p-3">      
+        <h1 class="text-center mb-3">Usuários</h1>                    
+    </div>    
+    @if (Auth::check())  
+      <div class="col text-end py-3">
+        <a href="{{route('user.create')}}">
+          <button class="btn btn-success">Add Usuário</button>
+        </a>
+      </div>      
+  @endif    
+  </div>  
+   
   @if ($message = Session::get('success'))
     <div class="alert alert-success">
         <p>{{ $message }}</p>
@@ -64,9 +57,12 @@
       @endforeach       
     </tbody>
   </table>
-  @if (isset($filters))
-    {{ $users->appends($filters)->links()}}
-  @else
-    {{$users->links()}}
-  @endif
+  <div class="pagination justify-content-center m-4">
+    @if (isset($filters))
+      {{ $users->appends($filters)->links()}}
+    @else
+      {{$users->links()}}
+    @endif
+  </div>
+  
 @endsection

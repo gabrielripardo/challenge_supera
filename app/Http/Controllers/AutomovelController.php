@@ -24,7 +24,7 @@ class AutomovelController extends Controller
      */
     public function index()
     {
-        $automoveis = $this->automovel->paginate(1);       
+        $automoveis = $this->automovel->paginate(5);       
         //order by id 
 
         // dd($this->automovel->find(2)->relUsers);
@@ -143,38 +143,37 @@ class AutomovelController extends Controller
 
     public function search(Request $request)
     {
+        $vars = [];
         $filters = $request->except('_token');
-
-        $tipos = $this->tipo->find('Carro');
-        // $tipo = $automovel->find($automovel->id)->relTipos
-
-
-        // $tipos = $this->tipo->join('tipos')
-        //     ->leftJoin('automoveis', 'tipos.id', '=', 'automoveis.id_tipo')
-        //     ->get();
+        $automoveis = $this->automovel;
         
-        // dd($tipos);
-
         //dd("pesquisando por {$request->search}");
-        $automoveis = $this->automovel->where('marca', 'LIKE', "%{$request->keyword}%")
-                        ->orWhere('modelo', 'LIKE', "%{$request->keyword}%")
-                        ->orWhere('versao', 'LIKE', "%{$request->keyword}%")
-                        ->orWhere('id_tipo', 'LIKE', "%{$request->keyword}%")
+        if(isset($request->id_user)){
+            $vars["id"] = $request->id_user;
+            $automoveis = $automoveis//->where('id_user', '=', $request->id_user)
+                        ->orwhere('marca', 'LIKE', "%{$request->keyword}%");            
+        }else{
+           $automoveis = $automoveis->where('marca', 'LIKE', "%{$request->keyword}%");
+        }   
+             $automoveis = $automoveis->orWhere('modelo', 'LIKE', "%{$request->keyword}%")                        
+                        ->orWhere('versao', 'LIKE', "%{$request->keyword}%")                        
                         ->orWhere(function ($query) {
                             $query->select('nome')
                                   ->from('tipos')
                                   ->whereColumn('automoveis.id_tipo', 'id');
                         },'LIKE', "%{$request->keyword}%")
-                        //order by id
-                        
-                        ->paginate(1);
-
-        //dd($automoveis);
-        return view('index', ['automoveis' => $automoveis, 'filters' => $filters]);        
+                        ->orderBy('id', 'desc')
+                        ->paginate(5);
+                        //->toSql();                                                                                                                          
+        // dd($automoveis);
+        $vars['automoveis'] = $automoveis;
+        $vars['filters'] = $filters;
+        
+        return view('index', $vars);        
     }
     public function mydicas($id){
         $automoveis = $this->automovel->where('id_user', '=', $id)                    
-                    ->paginate(1);                
+                    ->paginate(5);                
         //order by id 
 
         // dd($this->automovel->find(2)->relUsers);
