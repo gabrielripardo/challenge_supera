@@ -53,6 +53,7 @@
         <th scope="col">Modelo</th>
         <th scope="col">Versão</th>
         <th scope="col">Autor</th>
+        <th scope="col">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -69,18 +70,27 @@
           <td>{{$automovel->versao}}</td>
           <td>{{$user->name}}</td>          
           <td>          
-            <a href="{{route('automovel.show', $automovel->id)}}">
-              <button class="btn btn-secondary">Visualizar</button>
-            </a>
+            <div class="row">
+              <div class="col-sm-auto">
+                <a class="mx-2" href="{{route('automovel.show', $automovel->id)}}">
+                  <button class="btn btn-secondary">Visualizar</button>
+                </a>
+              </div>              
+              @if (isset($id))  
+                @if ($id == Auth::user()->id)
+                <div class="col-sm-auto">
+                  <a class="mx-2" href="{{route('automovel.edit', $automovel->id)}}">
+                    <button class="btn btn-primary">Editar</button>
+                  </a>                  
+                </div>
+                <div class="col-sm-auto">
+                  <button type="submit" class="btn btn-danger" class="mx-2" data-toggle="modal" data-target="#modalDeleteConfirm">Deletar</button>                                  
+                </div>                  
+                @endif
+              @endif                            
+            </div>
+            
 
-            @if (isset($id))  
-              @if ($id == Auth::user()->id)
-                <a href="{{route('automovel.edit', $automovel->id)}}">
-                  <button class="btn btn-primary">Editar</button>
-                </a>                  
-                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteConfirm">Deletar</button>                                  
-              @endif
-            @endif
           </td>
       </tr>
       @endforeach       

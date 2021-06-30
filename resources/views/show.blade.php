@@ -1,4 +1,5 @@
 @extends('templates.main')
+@extends('templates.model')
 
 @section('content')
 <div class="my-4">
@@ -44,6 +45,14 @@
     <div class="col-8">
       <div class="shadow p-3 mb-5 bg-white rounded font-weight-bold"><span style="font-size: 1.6em;" >{{$user->name}}</span></div>
     </div>
-  </div>  
+  </div>    
   
+  @if(Auth::check())
+    @if ($automovel->id_user == Auth::user()->id)
+      <a href="{{route('automovel.edit', $automovel->id)}}">
+        <button class="btn btn-primary">Editar</button>
+      </a>                  
+      <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteConfirm">Deletar</button>                                  
+    @endif
+  @endif  
 @endsection

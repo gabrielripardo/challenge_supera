@@ -116,7 +116,7 @@ class AutomovelController extends Controller
         ]);
 
         if($edicao){
-            return redirect('/');
+            return redirect(route('automovel.show', $id));
         }
     }
 
@@ -131,10 +131,10 @@ class AutomovelController extends Controller
         $delete = $this->automovel->destroy($id);
         
         if($delete){
-            return redirect(url()->previous())
+            return redirect(route('automovel.mydicas',$id))
                 ->with('success','Dica deletada com sucesso.');            
         }
-        return redirect(url()->previous())
+        return redirect(route('automovel.mydicas', $id))
             ->with('danger','Ocorreu um erro ao deletar a dica.');
         
     }
