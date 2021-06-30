@@ -12,9 +12,28 @@
         PHP Server
     </ul>
     <ul>
+        Composer
+    </ul>
+    <ul>
         MySQL
     </ul>
+    <ul>
+        Docker
+    </ul>
  <hr>
+<h2>Commands</h2>
+<h3>Run Docker through Laradock</h3>
+cd laradock
+docker-compose up -d nginx mysql phpmyadmin 
+
+<h3>Artisan</h3>
+php artisan migrate
+php artisan db:seed --class=DatabaseSeeder
+
+<h3>Browser</h3>
+http://localhost:9090
+
+
 
     
      
